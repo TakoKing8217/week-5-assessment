@@ -29,9 +29,9 @@ module.exports = {
             CREATE TABLE cities(
   	            city_id SERIAL PRIMARY KEY,
   	            name VARCHAR,
-            	rating INTEGER,
-            	country_id INTEGER REFERENCES countries(country_id)
-             );
+            	  rating INTEGER,
+            	  country_id INTEGER REFERENCES countries(country_id)
+                );
 
             insert into countries (name)
             values ('Afghanistan'),
@@ -236,5 +236,15 @@ module.exports = {
         res.sendStatus(200);
       })
       .catch((err) => console.log("error seeding DB", err));
+  },
+  getCountries: (req, res) => {
+    sequelize
+      .query(
+        `
+    select * from countries;
+    `
+      )
+      .then((dbRes) => res.status(200).send(dbRes[0]))
+      .catch((err) => console.log(err));
   },
 };
