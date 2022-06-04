@@ -26,7 +26,7 @@ module.exports = {
                 name varchar
             );
 
-            CREATE TABLE cities(
+            create table cities(
   	            city_id SERIAL PRIMARY KEY,
   	            name VARCHAR,
             	  rating INTEGER,
@@ -229,6 +229,12 @@ module.exports = {
             ('Yemen'),
             ('Zambia'),
             ('Zimbabwe');
+
+            insert into cities(name, rating, country_id)
+            values ('Chicago', 5, 187),
+            ('Sydney', 5, 9),
+            ('New Delhi', 5, 78);
+
         `
       )
       .then(() => {
@@ -265,7 +271,8 @@ module.exports = {
         `
     select cities.city_id, cities.name as city, cities.rating, countries.country_id, countries.name as country
     from countries
-    join cities on cities.country_id = countries.country_id;
+    join cities on cities.country_id = countries.country_id 
+    order by rating desc
     `
       )
       .then((dbRes) => res.status(200).send(dbRes[0]))
