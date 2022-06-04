@@ -247,4 +247,28 @@ module.exports = {
       .then((dbRes) => res.status(200).send(dbRes[0]))
       .catch((err) => console.log(err));
   },
+  createCity: (req, res) => {
+    let { name, rating, countryId } = req.body;
+    sequelize
+      .query(
+        `
+  insert into cities(name, rating, country_id)
+  values ('${name}', ${rating}, ${countryId});
+  `
+      )
+      .then((dbRes) => res.status(200).send(dbRes[0]))
+      .catch((err) => console.log(err));
+  },
+  getCities: (req, res) => {
+    sequelize
+      .query(
+        `
+    select cities.city_id, cities.name as city, cities.rating, countries.country_id, countries.name as country
+    from countries
+    join cities on cities.country_id = countries.country_id;
+    `
+      )
+      .then((dbRes) => res.status(200).send(dbRes[0]))
+      .catch((err) => console.log(err));
+  },
 };
