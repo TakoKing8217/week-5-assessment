@@ -1,0 +1,13 @@
+animal tables:
+4 tables + 
+
+· animals_housed - id, species_id, name, age, 
+· species_housed - id, species, 
+· applicants - id, name, number, email, banned or not, reference 1 full name, ref 1 number, ref 2 full name, ref 2 number
+· list of applications - id, applicant_id, animal id, reason for aplication and chosing animal, 
+
+
+
+
+which animals have been applied for, 
+need to know: what kind of animals, names of animals, applicants, names of applicants, applicants contact info, applicants recommendations, applicant's preference, applicant's background check?, applicant's history of adoption, animals problems, which animals have been applied for, which animals have been adopted, which animals have died in the home, reference 1&2 contact info, 
